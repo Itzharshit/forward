@@ -1,5 +1,5 @@
 # (c) @AbirHasan2005
-
+from pyrogram import enums
 import asyncio
 from configs import Config
 from pyrogram import Client
