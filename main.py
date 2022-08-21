@@ -35,7 +35,7 @@ async def main(client: Client, message: Message):
     if (message.text == "!start") and message.from_user.is_self:
         if not RUN["isRunning"]:
             RUN["isRunning"] = True
-        await message.edit(text=f"Hi, **{(await client.get_me()).first_name}**!\nThis is a Forwarder Userbot by @AbirHasan2005", parse_mode="Markdown",
+        await message.edit(text=f"Hi, **{(await client.get_me()).first_name}**!\nThis is a Forwarder Userbot by @AbirHasan2005",
                            disable_web_page_preview=True)
     elif (message.text == "!stop") and message.from_user.is_self:
         RUN["isRunning"] = False
@@ -43,7 +43,7 @@ async def main(client: Client, message: Message):
     elif (message.text == "!help") and message.from_user.is_self and RUN["isRunning"]:
         await message.edit(
             text=Config.HELP_TEXT,
-            parse_mode="Markdown", disable_web_page_preview=True)
+            disable_web_page_preview=True)
     elif message.text and (message.text.startswith("!add_forward_")) and message.from_user.is_self and RUN["isRunning"]:
         if len(message.text.split(" ", 1)) < 2:
             return await message.edit(f"{message.text} chat_id")
@@ -68,7 +68,6 @@ async def main(client: Client, message: Message):
         if Config.HEROKU_APP is None:
             await message.edit(
                 text="Restarting Userbot ...",
-                parse_mode="Markdown",
                 disable_web_page_preview=True
             )
             # https://stackoverflow.com/a/57032597/15215201
@@ -88,7 +87,7 @@ async def main(client: Client, message: Message):
             return
         await message.edit(
             text=f"Trying to Get All Messages from `{str(Config.FORWARD_FROM_CHAT_ID[0])}` and Forwarding to {' '.join(str(Config.FORWARD_TO_CHAT_ID))} ...",
-            parse_mode="Markdown", disable_web_page_preview=True)
+            disable_web_page_preview=True)
         await asyncio.sleep(5)
         try_kang = await Kanger(c=User, m=message)
         if try_kang == 400:
